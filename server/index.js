@@ -1,4 +1,5 @@
-const fastify = require("fastify")({
+module.exports = function(basedirname){
+  const fastify = require("fastify")({
   logger: true
 });
 
@@ -9,8 +10,8 @@ const { Turtle } = require("./database/index");
 
 //? constaints pathes
 const route_dir = __dirname+"/routes";
-const src_dir = resolve("./client/src");
-const pages_dir = resolve("./client/pages");
+const src_dir = join(basedirname, "/client/src");
+const pages_dir = join(basedirname, "/client/pages");
 
 const assertSourceExt = [".css", ".js", ".svg", ".jpg", ".png", ".gif", ".mp3", ".ogg", ".mpeg", ".mp4"];
 //? get routes 
@@ -105,4 +106,4 @@ fastify.route({
 fastify.listen({
   port: 3000, // http://127.0.0.1:3000
 })
- 
+}
