@@ -2,15 +2,15 @@ const fastify = require("fastify")({
   logger: true
 });
 
-const { extname, join } = require("path");
+const { extname, join, resolve} = require("path");
 const { readFileSync } = require("fs");
 const { readdirdeep } = require("../utils/index"); // ${process.cwd()}
 const { Turtle } = require("./database/index");
 
 //? constaints pathes
 const route_dir = __dirname+"/routes";
-const src_dir = process.cwd()+"/client/src";
-const pages_dir = process.cwd()+"/client/pages";
+const src_dir = resolve("./client/src");
+const pages_dir = resolve("./client/pages");
 
 const assertSourceExt = [".css", ".js", ".svg", ".jpg", ".png", ".gif", ".mp3", ".ogg", ".mpeg", ".mp4"];
 //? get routes 
