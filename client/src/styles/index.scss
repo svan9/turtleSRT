@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+$trans-color: #DFE1E4;
+
+body {
+  background-color: #222226;
+  margin-top: 5%;
+}
+
+.translator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  font-weight: 700;
+  font-family: "Nunito", sans-serif;
+
+  color: $trans-color;
+
+  
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    .side-name {
+      width: 350px; 
+      height: 25px;
+      
+      text-align: center;
+
+      background-color: #18181B;
+      font-size: 18px;
+      
+      padding: .5rem;
+      border-radius: .5rem;
+
+    }
+
+    .swapper {
+      background-color: #18181B;
+      .img {
+        background-image: url(/src/images/swapper.svg);
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        height: 25px;
+
+        transition: .1s;
+      }
+
+      &[pressed] .img {
+        animation: flip-y .3s;
+        animation-play-state: running;
+        animation-iteration-count: 1;
+      }
+
+      cursor: pointer;
+      
+      aspect-ratio: 1/1;
+      height: 25px;
+
+      padding: .5rem;
+      border-radius: .5rem;
+    }
+  }
+
+  .content {
+    display: flex;
+    gap: 1.5rem;
+
+    textarea {
+      resize: none;
+
+      width: 350px;
+      height: 175px;
+      padding: 1rem;
+      
+      font-size: 20px;
+      font-weight: 700;
+      font-family: "Nunito", sans-serif;
+
+      border-radius: .5rem;
+      outline: none;
+
+      background-color: #1B1B1D;
+      border: none;
+      
+      color: $trans-color;
+
+    }
+
+
+    position: relative;
+
+    .info {
+      position: absolute;
+      height: 30px;
+      width: 80px;
+      bottom: .5rem;
+      right: .1rem;
+
+      cursor: pointer;
+
+      transition: 1s;
+
+      &::before {
+        content: "используй это, чтобы отправить запрос на именение";
+        font-size: 15px;
+        display: block;
+        width: 400px;
+        opacity: 0%;
+        z-index: 1000;
+        text-align: left;
+        transform: translate(-50%, -150%);
+        
+        background-color: hsl(240, 4%, 11%);
+        border-radius: .5rem;
+        border: 1px solid $trans-color;
+        transition: 0.1s;
+        text-align: center;
+      }
+      
+      
+      &:hover::before {
+        opacity: 80%;
+      }
+      
+      .img:hover {
+        opacity: 80%;
+      }
+      
+      .img {
+        z-index: 900;
+        transition: .1s;
+
+        background-image: url(/src/images/info.svg);
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        height: 30px;
+        aspect-ratio: 1/1;
+        position: absolute;
+        bottom: .5rem;
+        right: .1rem;
+      }
+    }
+  }
+  .loader {
+    width: 350px;
+    height: 175px;
+    padding: 1rem;
+    border-radius: .5rem;
+    position: absolute;
+    background-color: hsl(240, 6%, 14%, 20%); 
+    // background-color: hsl(240, 6%, 14%);
+
+    z-index: 2000;
+    top: 0;
+
+    transition: .5s;
+    display: none;
+  }
+
+  #content-b[wait] ~ .loader {
+    display: block;
+  }
+  
+  #content-b[wait] ~ .loader .img {
+    --_size: 50px;
+    transform-origin: 50% 50%;
+    background-image: url(/src/images/loader-rs.svg);
+    background-position: 50% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    height: 64px;
+    aspect-ratio: 1/1;
+    
+    z-index: 3000;
+    // animation: rotate-arount 3s infinite ease;
+
+    position: absolute;
+    left: calc( 370px / 2 - var(--_size) / 2);
+    top: calc( 180px / 2  - var(--_size) / 2);
+  }
+
+  // .right.side::after {
+  //   content: "";
+  //   // position: absolute;
+  //   display: block;
+    
+
+
+  //   height: 64px;
+  //   width: 64px;
+
+  //   transform: translate(100%, -100%);
+  //   z-index: 3000;
+  // }
+}
+
+@keyframes rotate-arount {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flip-y {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(180deg);
+  }
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #1b1b1d;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: hsl(240, 6%, 8%); // 18181b
+}

@@ -1,0 +1,24 @@
+{
+  "resultSets": [{
+    "columns": [{
+      "name": "ru",
+      "type": {
+        "optionalType": {
+          "item": {
+            "typeId": "UTF8"
+          }
+        }
+      }
+    }],
+    "rows": [{
+      "items": [{
+        "textValue": "немного"
+      }]
+    }, {
+      "items": [{
+        "textValue": "я хочу немного него"
+      }]
+    }]
+  }],
+  "txMeta": {}
+}
